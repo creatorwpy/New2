@@ -30,7 +30,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     }
     @Override
     public void uncaughtException(Thread t, Throwable e) {
+        e.printStackTrace();
         LogDebug.e("崩溃了:",e.getMessage());
+
         AsyncHttpClient client = new AsyncHttpClient();
         String url = Config.apis_site+"/apis/news/?action=debug&version="+ CommonUtil.getVersionName(context)+"&platform=android&msg="+e.getMessage();
         RequestParams requestParams = new RequestParams();
@@ -47,6 +49,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
             }
         });
-        e.printStackTrace();
+
     }
 }

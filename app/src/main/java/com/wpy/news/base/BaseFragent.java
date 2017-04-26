@@ -1,4 +1,4 @@
-package com.wpy.news.fragment;
+package com.wpy.news.base;
 
 import android.support.v4.app.Fragment;
 

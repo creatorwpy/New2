@@ -9,6 +9,7 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 import com.wpy.news.R;
+import com.wpy.news.base.BaseActivity;
 import com.wpy.news.util.LogDebug;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class NewsDetailsActivity extends BaseActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 loading.setVisibility(View.GONE);
-                webText.setVisibility(View.VISIBLE);
+//                webText.setVisibility(View.VISIBLE);
             }
         });
         webText.loadUrl(data.get(1));

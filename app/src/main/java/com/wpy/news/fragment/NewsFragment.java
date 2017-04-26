@@ -22,6 +22,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.wpy.news.R;
 import com.wpy.news.activity.NewsDetailsActivity;
+import com.wpy.news.base.BaseFragent;
 import com.wpy.news.model.News;
 import com.wpy.news.model.NewsModel;
 import com.wpy.news.util.LogDebug;
@@ -33,9 +34,6 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * Created by Administrator on 2016/10/24.
@@ -63,7 +61,7 @@ public class NewsFragment extends BaseFragent {
         }
 
         View view = inflater.inflate(R.layout.news_fragment_layout, container, false);
-//        recyclerView = (EasyRecyclerView)view.findViewById(R.id.recyclerView2);
+        recyclerView = (EasyRecyclerView)view.findViewById(R.id.recyclerView2);
         ButterKnife.bind(this, view);
         LogDebug.d("adapter");
         adapter = new NewsAdapter(getActivity());
@@ -114,6 +112,7 @@ public class NewsFragment extends BaseFragent {
                 data.add(adapter.getAllData().get(position).getPicUrl());
                 data.add(adapter.getAllData().get(position).getUrl());
                 Intent intent = new Intent(getActivity(), NewsDetailsActivity.class);
+//                Intent intent = new Intent(getActivity(), TestActivity.class);
                 //用Bundle携带数据
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList("data", data);
@@ -132,58 +131,6 @@ public class NewsFragment extends BaseFragent {
         super.onViewCreated(view, savedInstanceState);
         getDataAsyncHttp();
     }
-    //http://api.tianapi.com/social/?key=6cad4a694ce80d4c7596d738ec7c9c1c&num=10&page=1
-    /*
-    private void getData() {
-        LogDebug.d("来了 page", page + "");
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Config.tiaji_site)
-                //String
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())//添加 json 转换器
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//添加 RxJava 适配器
-                .build();
-        ApiService apiManager = retrofit.create(ApiService.class);//这里采用的是Java的动态代理模式
-        apiManager.getNewsData(Config.tiaji_key, "10", page)
-                .subscribeOn(Schedulers.io())
-                .map(new Func1<NewsModel, List<News>>() {
-                    @Override
-                    public List<News> call(NewsModel NewsModel) { //
-                        LogDebug.d("call",NewsModel.getMsg());
-                        List<News> newsList = new ArrayList<News>();
-                        for (NewsModel.NewslistBean newslistBean : NewsModel.getNewslist()) {
-                            News new1 = new News();
-                            new1.setTitle(newslistBean.getTitle());
-                            new1.setCtime(newslistBean.getCtime());
-                            new1.setDescription(newslistBean.getDescription());
-                            new1.setPicUrl(newslistBean.getPicUrl());
-                            new1.setUrl(newslistBean.getUrl());
-                            newsList.add(new1);
-                        }
-                        return newsList; // 返回类型
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<News>>() {
-                    @Override
-                    public void onNext(List<News> newsList) {
-                        adapter.addAll(newsList);
-                        LogDebug.d("onNext");
-                        LogDebug.d(newsList.get(0).getTitle());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        LogDebug.d(e.getMessage());
-                        LogDebug.d("网络连接失败");
-                    }
-                });
-        page = page + 1;
-    }*/
     private  void getDataAsyncHttp(){
         if(urltype.isEmpty()){
             LogDebug.e("getDataAsyncHttp","url为空");
@@ -228,13 +175,6 @@ public class NewsFragment extends BaseFragent {
         });
 
     }
-
-
-    public interface ApiService {
-        @GET("social/")
-        Observable<NewsModel> getNewsData(@Query("key") String key, @Query("num") String num, @Query("page") int page);
-    }
-
     public class NewsAdapter extends RecyclerArrayAdapter<News> {
         public NewsAdapter(Context context) {
             super(context);

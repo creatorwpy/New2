@@ -1,4 +1,4 @@
-package com.wpy.news.activity;
+package com.wpy.news.base;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -15,12 +15,14 @@ public class BaseActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         // TODO: 16/9/1  add the third service. eg.umeng ...
+//        App.getApp().addActivity(this);
         LogDebug.e(TAG,TAG+"创建");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+//        App.getApp().removeActivity(this);
         LogDebug.e(TAG,TAG+"销毁");
     }
 }

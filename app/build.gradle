@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        news {
+            keyAlias 'news'
+            keyPassword '123123'
+            storeFile file('E:/腾讯云/自动同步/android/新闻/安卓客户端/签名/sign.jks')
+            storePassword '123123'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
@@ -15,6 +23,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.news
         }
     }
 }

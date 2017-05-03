@@ -13,48 +13,59 @@
             android:id="@+id/nav_gallery"
             android:title="国际新闻" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="娱乐新闻" />
-        <item
             android:id="@+id/nav_manage"
             android:title="体育新闻" />
-        <item
-            android:id="@+id/nav_nba"
-            android:title="NBA新闻" />
+
         <item
             android:id="@+id/nav_football"
             android:title="足球新闻" />
+
+        <item
+            android:id="@+id/nav_startup"
+            android:title="创业新闻" />
+
+
         <item
             android:id="@+id/nav_keji"
 
             android:title="科技新闻" />
-        <item
-            android:id="@+id/nav_startup"
-            android:title="创业新闻" />
-        <item
-            android:id="@+id/nav_apple"
-            android:title="苹果新闻" />
+
         <item
             android:id="@+id/nav_mobile"
             android:title="移动互联" />
+
+        <item
+            android:id="@+id/nav_health"
+            android:title="健康知识" />
+
+        <item
+            android:id="@+id/nav_it"
+            android:title="IT资讯" />
+
+        <item
+            android:id="@+id/nav_qiwen"
+            android:title="奇闻异事" />
+
+        <item
+            android:id="@+id/nav_nba"
+            android:title="NBA新闻" />
+        <item
+            android:id="@+id/nav_apple"
+            android:title="苹果新闻" />
+
+        <item
+            android:id="@+id/nav_slideshow"
+            android:title="娱乐新闻" />
         <item
             android:id="@+id/nav_travel"
             android:title="旅游资讯" />
         <item
-            android:id="@+id/nav_health"
-            android:title="健康知识" />
-        <item
-            android:id="@+id/nav_qiwen"
-            android:title="奇闻异事" />
-        <item
             android:id="@+id/nav_meinv"
+
             android:title="美女图片" />
         <item
             android:id="@+id/nav_vr"
             android:title="VR科技" />
-        <item
-            android:id="@+id/nav_it"
-            android:title="IT资讯" />
     </group>
 
     <item android:title="其他">

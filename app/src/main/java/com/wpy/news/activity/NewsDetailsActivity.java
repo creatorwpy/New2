@@ -77,7 +77,7 @@ public class NewsDetailsActivity extends BaseActivity {
 
     @Override
     /*当窗口关闭的时候也将浏览器关闭，否则视频的声音不停下来*/
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         LogDebug.e("onStop","onStop");
 //        webText.destroy();
@@ -87,7 +87,7 @@ public class NewsDetailsActivity extends BaseActivity {
      * 当Activity执行onPause()时让WebView执行pause 
      */
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         try {
             if (webText != null) {
@@ -104,7 +104,7 @@ public class NewsDetailsActivity extends BaseActivity {
      * 当Activity执行onResume()时让WebView执行resume 
      */
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         try {
             if (isOnPause) {

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -48,6 +49,7 @@ public class NewsFragment extends BaseFragent {
 
     //@BindView(R.id.recyclerView2)
     EasyRecyclerView recyclerView;
+    LinearLayout loading;
 
 
     @Override
@@ -62,6 +64,8 @@ public class NewsFragment extends BaseFragent {
 
         View view = inflater.inflate(R.layout.news_fragment_layout, container, false);
         recyclerView = (EasyRecyclerView)view.findViewById(R.id.recyclerView2);
+        loading = (LinearLayout)view.findViewById(R.id.loading);
+
         ButterKnife.bind(this, view);
         LogDebug.d("adapter");
         adapter = new NewsAdapter(getActivity());
@@ -145,7 +149,7 @@ public class NewsFragment extends BaseFragent {
                 // called when response HTTP status is "200 OK"
                 String body = new String(response);
                 LogDebug.v("http结果：",body);
-
+                loading.setVisibility(View.GONE);
                 Gson gson = new Gson();
                 TypeToken<NewsModel> typeToken = new TypeToken<NewsModel>(){};
                 Type type = typeToken.getType();
@@ -169,6 +173,8 @@ public class NewsFragment extends BaseFragent {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                loading.setVisibility(View.GONE);
+                showToastShort("出错了，请重新操作");
                 LogDebug.v("http结果：","onFailure");
                 page--;
             }
